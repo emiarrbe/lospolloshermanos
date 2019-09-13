@@ -1,0 +1,35 @@
+
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Empresa en JSON</h2>
+
+<p id="demo"></p>
+
+<script>
+var text = '{"boleta":"2013602608", "balance":{"activo":{"industria":6,"bancos":1713,"insumo1":203,"insumo2":152,"en_proceso":792,"mercancias":1607,"clientes":2525,"infraestructura":17773},"pasivo":{"proveedores":2388,"hipotecas":12029},"capital":{"capital_social":5978,"utilidad":"function(a1,a2,a3,a4,a5,a6,a7,a8,p1,p2,c1) {return a1+a2+a3+a4+a5+a6+a7+a8-p1-p2-c1;}"}}}';
+
+var obj = JSON.parse(text);
+obj.balance.capital.utilidad = eval("(" + obj.balance.capital.utilidad + ")");
+
+document.getElementById("demo").innerHTML = "Boleta: " + obj.boleta + "<br>" + "<br>" 
++ "ACTIVO"+ "<br>" + 
+"industria:  " + obj.balance.activo.industria + "<br>" +
+"bancos:  " + obj.balance.activo.bancos + "<br>" +
+"insumo1:  " + obj.balance.activo.insumo1 + "<br>" +
+"insumo2:  " + obj.balance.activo.insumo2 + "<br>" +
+"en_proceso:  " + obj.balance.activo.en_proceso + "<br>" +
+"mercancias:  " + obj.balance.activo.mercancias + "<br>" +
+"clientes:  " + obj.balance.activo.clientes + "<br>" +
+"infraestructura:  " + obj.balance.activo.infraestructura + "<br>" + "<br>" +
+"PASIVO"+ "<br>" + 
+"proveedores:  " + obj.balance.pasivo.proveedores + "<br>" +
+"hipotecas:  " + obj.balance.pasivo.hipotecas + "<br>" + "<br>" +
+"CAPITAL"+ "<br>" + 
+"capital_social:  " + obj.balance.capital.capital_social + "<br>" +
+"utilidad: " + obj.balance.capital.utilidad(obj.balance.activo.industria, obj.balance.activo.bancos,obj.balance.activo.insumo1,obj.balance.activo.insumo2,obj.balance.activo.en_proceso,obj.balance.activo.mercancias,obj.balance.activo.clientes,obj.balance.activo.infraestructura,obj.balance.pasivo.proveedores,obj.balance.pasivo.hipotecas,obj.balance.capital.capital_social); 
+</script>
+
+</body>
+</html>
