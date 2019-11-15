@@ -39,6 +39,25 @@ condicion:-read(X), write(X).
 verdadero:- a2.
 :- ontologia.
 
+Prolog v3:
+ontologia:- read(X), write('"'), write(X),write('":{'),objeto,write('},').
+objeto:- write('"'),read(X), write(X),write('":{'),atributo,write('}').
+atributo:- write('"'),read(X), write(X), write('":'),tipoatributo(X). 
+tipoatributo(M):- read(X), (X='metodo'->metodo(M); b1(X)).
+b1(X):- X='numero'->numero; b2(X).
+b2(X):- X='cadena'->cadena;write('error').
+cadena:- read(X), write('"'), write(X), write('",').
+numero:-read(X), write(X).
+metodo(M):- write('"function() {'),a2,write(' return '), write(M), write(';}"').
+a2:- read(X), (X='decision'->decision;a3(X)).
+a3(X):- X='asignacion' -> asignacion;(a4(X)).
+a4(X):- X='fin' -> write('');(write('error'),write(X)).
+asignacion:- read(X), write(X), write('='), read(Y), write(Y), write(';'),a2.
+decision:- write('if('),condicion,write('){'), verdadero.
+condicion:-read(X), write(X).
+verdadero:- a2,write('}').
+:- ontologia.
+
 JSON:
 "ontologia":{"objeto":{"isan":"function() {precio=273;if(precio=273){tasa=2;isan=precio* (tasa/180);}
 else if(precio<329){tasa=5;isan=precio* (tasa/180);}
@@ -70,6 +89,50 @@ precio<'389'.
 asignacion.
 tasa.
 10.
+asignacion.
+isan.
+precio*(tasa/180).
+fin.
+
+
+Recuadro amarillo v3:
+abc.
+def.
+isan.
+metodo.
+asignacion.
+precio.
+273.
+decision.
+precio<'274'.
+asignacion.
+tasa.
+5.
+asignacion.
+isan.
+precio*(tasa/180).
+decision.
+precio<'389'.
+asignacion.
+tasa.
+10.
+asignacion.
+isan.
+precio*(tasa/180).
+fin.
+ontologia.
+ghi.
+jkl.
+isan.
+metodo.
+asignacion.
+precio.
+300.
+decision.
+precio<'274'.
+asignacion.
+tasa.
+5.
 asignacion.
 isan.
 precio*(tasa/180).
