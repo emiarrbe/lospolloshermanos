@@ -1,0 +1,1 @@
+[04-Oct-2019 19:38:54 UTC] PHP Fatal error:  Using $this when not in object context in /home/tarjetips/public_html/_controller/General.php on line 33

@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html style="height: 100%; width: 100%; padding:0px;">
+    <head>
+        <link rel="icon" type="image/png" href="images/ico.ico">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+        <link href="css/estilos.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <script src="js/index.js"></script>
+    </head>
+    <body onload="inicio()" style="height: 100%; width: 100%; padding:0px; margin:0px !important;">
+        <nav class="navbar navbar-dark nav-verde">
+            <div class="row" style="height: 100%; width: 100%; padding:0px; margin:0px !important;">
+                <div class="col-sm-12 col-md-12" style="height: 50px; width: 100%;padding-right:3px; ">
+                    <img src="images/logo-blanco.png" height="50px">
+                </div>
+            </div>
+        </nav>
+        <div id="mySidenav" class="sidenav" >
+            <div class="col-sm-12 col-md-12" style="height: 58px; width: 100%;padding-right:3px; background-color: #006F54!important; ">
+                <img src="images/logo-blanco.png" height="50px">
+            </div>
+            <div class="col-sm-12 col-md-12">
+                <div class="col-sm-12 col-md-12" style="text-align: center; padding-top: 25px;">
+                    <img class="avatar" src="images/avatar.png">
+                </div>
+                <div class="col-sm-12 col-md-12" style="text-align: center;">
+                    <h6 id="nombre"></h6>
+                    <h5 id="tipoUsuario" style="color:#006F54"></h5>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-12 div-menu" id="propietarios" onclick="menuPressed('propietarios')">
+                <i class="fas fa-user-alt" style="font-size:20px;"><span class="menu-letra">Propietarios</span></i>
+            </div>
+            <div class="col-sm-12 col-md-12 div-menu" id="viviendas" onclick="menuPressed('viviendas')">
+                <i class="fas fa-home" style="font-size:20px;"><span class="menu-letra">Viviendas</span></i>
+            </div>
+            <div class="col-sm-12 col-md-12 div-menu" id="habitantes" onclick="menuPressed('habitantes')">
+                <i class="fas fa-user-friends" style="font-size:20px;"> <span class="menu-letra">Habitantes</span></i>
+            </div>
+            <div class="col-sm-12 col-md-12 div-menu" id="municipios" onclick="menuPressed('municipios')">
+                <i class="fas fa-map-marked-alt" style="font-size:20px;"> <span class="menu-letra">Municipios</span></i>
+            </div>
+            <div class="col-sm-12 col-md-12 div-menu" id="barrios" onclick="menuPressed('barrios')">
+                <i class="fas fa-archway"style="font-size:20px;"> <span class="menu-letra">Barrios</span></i>
+            </div>
+            <div class="col-sm-12 col-md-12 div-menu" id="recibos" onclick="menuPressed('recibos')">
+                <i class="fas fa-money-bill-wave" style="font-size:20px;"> <span class="menu-letra">Recibos</span></i>
+            </div>
+            <div class="col-sm-12 col-md-12 div-menu" id="administrador" onclick="menuPressed('administrador')">
+                <i class="fas fa-user-cog" style="font-size:20px;"><span class="menu-letra">Administrador</span></i>
+            </div>
+            <div class="col-sm-12 col-md-12 div-menu" id="cerrar" onclick="cerrarSesion('cerrar')">
+                <i class="fas fa-user-cog" style="font-size:20px;"><span class="menu-letra">Cerrar Sesión</span></i>
+            </div>
+        </div>      
+        <div class="container-fluid" style="height:100%!important; widows: 100% !important; padding:0px !important; margin:0px !important;">
+            <div class="row" style="height: 100%; width: 100%; padding:0px; margin:0px !important;">
+                <div class="col-sm-12 col-md-12" style="height: 180px; width: 100%;padding-right:3px; ">
+                    <div id="menuFoto" class="div-img-menu" >
+                    </div>
+                    
+                </div>
+                <div class="col-sm-12 col-md-12" style="left:250px; "  >
+                    <h2 id="title" style="padding-top: 15px; text-transform: uppercase;"></h2>
+                    <ul class="nav nav-tabs">
+                        <li id="m-Consulta"><a class="padding-a" data-toggle="tab" href="#consulta">Consulta</a></li>
+                        <li id="m-Alta"><a class="padding-a" data-toggle="tab" href="#alta">Alta</a></li>
+                        <li id="m-Actualizacion"><a class="padding-a" data-toggle="tab" href="#actualizacion">Actualización</a></li>
+                        <li id="m-Baja"><a class="padding-a" data-toggle="tab" href="#baja">Baja</a></li>
+                    </ul>
+                      <div class="tab-content" >
+                        <div id="alta" class="tab-pane fade in active">
+                          <br>
+                            <div id="altaViviendas" class="col-md-8">
+                                    <br>
+                                <div class="col-md-12 col-sm-12">
+                                    <input type="text" id="calleAltaV" class="form-control" style="height: 50px;" placeholder="Ingresa Calle">
+                                </div>
+                                <br>
+                                <div class="col-md-12 col-sm-12">
+                                    <div class="col-md-8 col-sm-6">
+                                        <input type="number" id="numeroAltaV" class="form-control" style="height: 50px;" placeholder="Numero">
+                                    </div>
+                                    <br>
+                                    <div class="col-md-8 col-sm-6">
+                                        <input type="number" id="pisoAltaV" class="form-control" style="height: 50px;" placeholder="Piso">
+                                    </div>
+                                    <br>
+                                    <div class="col-md-8 col-sm-6">
+                                        <input type="number" id="metrosAltaV" class="form-control" style="height: 50px;" placeholder="Metros Cuadrados">
+                                    </div>
+                                    <br>
+                                    <div class="col-md-8 col-sm-6">
+                                        <input type="number" id="totalAltaV" class="form-control" style="height: 50px;" placeholder="Total Habitaciones">
+                                    </div>
+                                    <br>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="col-md-6">
+                                        <input type="text" id="dniViAlta" class="form-control" style="height: 50px;" placeholder="DNI Propietaro">
+                                    </div>
+                                    <br>
+                                    <div class="col-md-6">
+                                        <input type="text" id="codigoRgiAltaV" class="form-control" style="height: 50px;" placeholder="Codigo Reg">
+                                    </div>
+                                    <br>
+                                </div>
+                                <br>
+                                <div class="col-md-12">
+                                    <button type="button" class="btn boton-verde btn-lg" onclick="enviarDatosAltaVivienda()">Guardar</button>
+                                </div>
+
+                          </div>
+                          <div id="altaBarrio" class="col-md-8">
+                                <br>
+                            <div class="col-md-12 col-sm-12">
+                                <input type="text" id="nombreBarrioAlta" class="form-control" style="height: 50px;" placeholder="Ingresa Nombre">
+                            </div>
+                            <br>
+                            <div class="col-md-12 col-sm-12">
+                                <div class="col-md-8 col-sm-6">
+                                    <input type="number" id="precioBarrioAlta" class="form-control" style="height: 50px;" placeholder="Precio">
+                                </div>
+                                <br>
+                                <div class="col-md-8 col-sm-6">
+                                    <input type="number" id="areaBarrioAlta" class="form-control" style="height: 50px;" placeholder="Area">
+                                </div>
+                                <br>
+                                <div class="col-md-8 col-sm-6">
+                                    <input type="number" id="perimetroBarrioAlta" class="form-control" style="height: 50px;" placeholder="Perimetro">
+                                </div>
+                                <br>
+                                <div class="col-md-8 col-sm-6">
+                                    <input type="text" id="coordenadasBarrioAlta" class="form-control" style="height: 50px;" placeholder="Coordenadas">
+                                </div>
+                                <br>
+                                <div class="col-md-8 col-sm-6">
+                                    <input type="text" id="codRegBarrioAlta" class="form-control" style="height: 50px;" placeholder="Codigo de Region Municipio">
+                                </div>
+                            </div>
+                            <br>
+                            <div class="col-md-12">
+                                <button type="button" class="btn boton-verde btn-lg" onclick="enviarDatosAltaBarrio()">Guardar</button>
+                            </div>
+
+                      </div>
+                      <div id="altaPropietario" class="col-md-8">
+                            <br>
+                        <div class="col-md-12 col-sm-12">
+                            <input type="text" id="nombrePropietarioAlta" class="form-control" style="height: 50px;" placeholder="Nombre Propietario">
+                        </div>
+                        <br>
+                        <div class="col-md-12 col-sm-12">
+                            <div class="col-md-8 col-sm-6">
+                                <input type="text" id="apellidoPPropietarioAlta" class="form-control" style="height: 50px;" placeholder="Apellido Paterno">
+                            </div>
+                            <br>
+                            <div class="col-md-8 col-sm-6">
+                                <input type="text" id="apellidoMPropietarioAlta" class="form-control" style="height: 50px;" placeholder="Apellido Materno">
+                            </div>
+                            <br>
+                            <div class="col-md-8 col-sm-6">
+                                <input type="text" id="direccionPropietarioAlta" class="form-control" style="height: 50px;" placeholder="Dirección">
+                            </div>
+                            <br>
+                            <div class="col-md-8 col-sm-6">
+                                <input type="text" id="cuentaPropietarioAlta" class="form-control" style="height: 50px;" placeholder="Cuenta Bancaria">
+                            </div>
+                            <br>
+                            
+                        </div>
+                        <br>
+                        <div class="col-md-12">
+                            <button type="button" class="btn boton-verde btn-lg" onclick="enviarDatosAltaPropietario()">Guardar</button>
+                        </div>
+
+                  </div>
+                  <div id="altaHabitantes" class="col-md-8">
+                        <br>
+                    <div class="col-md-12 col-sm-12">
+                        <input type="text" id="nombreHabitanteAlta" class="form-control" style="height: 50px;" placeholder="Nombre Habitante">
+                    </div>
+                    <br>
+                    <div class="col-md-12 col-sm-12">
+                        <div class="col-md-8 col-sm-6">
+                            <input type="text" id="apellidoPHabitanteoAlta" class="form-control" style="height: 50px;" placeholder="Apellido Paterno">
+                        </div>
+                        <br>
+                        <div class="col-md-8 col-sm-6">
+                            <input type="text" id="apellidoMHabitanteoAlta" class="form-control" style="height: 50px;" placeholder="Apellido Materno">
+                        </div>
+                        <br>
+                        <div class="col-md-8 col-sm-6">
+                            <input type="number" id="edadHabitanteAlta" class="form-control" style="height: 50px;" placeholder="Edad">
+                        </div>
+                        <br>
+                        <div class="col-md-8 col-sm-6">
+                            <input type="number" id="noViviendaHAlta" class="form-control" style="height: 50px;" placeholder="Codigo de Vivienda">
+                        </div>
+                        <br>
+                        
+                    </div>
+                    <br>
+                    <div class="col-md-12">
+                        <button type="button" class="btn boton-verde btn-lg" onclick="enviarDatosAltaHabitante()">Guardar</button>
+                    </div>
+
+              </div>
+                          <div id="altaMunicipios" class="col-md-8">
+                                <br>    
+                            <div class="col-md-12 col-sm-12">
+                                    <input type="text" id="nombreMunicipioAlta" class="form-control" style="height: 50px;" placeholder="Nombre Municipio">
+                                </div>
+                                <br>
+                                <div class="col-md-12 col-sm-12">
+                                    <div class="col-md-8 col-sm-6">
+                                        <input type="number" id="areaMunicipioAlta" class="form-control" style="height: 50px;" placeholder="Area Municipio">
+                                    </div>
+                                    <br>
+                                    <div class="col-md-8 col-sm-6">
+                                        <input type="number" id="perimetroMunicipioAlta" class="form-control" style="height: 50px;" placeholder="Perimetro Municipio">
+                                    </div>
+                                    <br>
+                                    <div class="col-md-8 col-sm-6">
+                                        <input type="text" id="provinciaMunicipioAlta" class="form-control" style="height: 50px;" placeholder="Provincia">
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="col-md-12">
+                                    <button type="button" class="btn boton-verde btn-lg" onclick="enviarDatosAltaMunicipio()">Guardar</button>
+                                </div>
+
+                          </div>
+                          <div id="altaRecibos" class="col-md-8">
+                                <br>    
+                            <div class="col-md-12 col-sm-12">
+                                    <input type="text" id="folioAltaMunicipio" class="form-control" style="height: 50px;" placeholder="Folio">
+                                </div>
+                                <br>
+                                <div class="col-md-12 col-sm-12">
+                                    <div class="col-md-8 col-sm-6">
+                                        <input type="number" id="codigoMunicipio" class="form-control" style="height: 50px;" placeholder="Codigo Vivienda">
+                                    </div>
+                                    <br>
+                                </div>
+                                <br>
+                                <div class="col-md-12">
+                                    <button type="button" class="btn boton-verde btn-lg" onclick="enviarDatosAltaRecibo()">Guardar</button>
+                                </div>
+
+                          </div>
+                        </div>
+                        <div id="actualizacion" class="tab-pane fade">
+                                <br>
+                            <div id="actualizaVivivenda" class="col-md-8">
+                                    <div class="col-md-12 col-sm-12">
+                                        <input type="number" id="noRegActualizaViviendas" class="form-control" style="height: 50px;" placeholder="Ingresa el Numero Registro">
+                                    </div>
+                                    <br>
+                                        <div class="col-md-12">
+                                            <button type="button" class="btn boton-verde btn-lg" onclick="consultarVivienda()">Consultar</button>
+                                        </div>
+                                        <br><br>
+                                        <div class="col-md-12 col-sm-12">
+                                                <label>Calle</label>
+                                            <input type="text" id="calleActualizaV" disabled class="form-control" style="height: 50px;" placeholder="Ingresa Calle">
+                                        </div>
+                                        <br>
+                                        <div class="col-md-12 col-sm-12">
+                                            <div class="col-md-3 col-sm-6">
+                                                <label>Numero</label>
+                                                <input type="number" id="numeroActualizaV" disabled class="form-control" style="height: 50px;" placeholder="Numero">
+                                            </div>
+                                            <br>
+                                            <div class="col-md-3 col-sm-6">
+                                                    <label>Piso</label>
+                                                <input type="number" id="pisoActualizaV" disabled class="form-control" style="height: 50px;" placeholder="Piso">
+                                            </div>
+                                            <br>
+                                            <div class="col-md-3 col-sm-6">
+                                                    <label>Metros Cuadrados</label>
+                                                <input type="number" id="metrosActualizaV" disabled class="form-control" style="height: 50px;" placeholder="Metros Cuadrados">
+                                            </div>
+                                            <br>
+                                            <div class="col-md-3 col-sm-6">
+                                                <label>Total de Habitantes</label>
+                                                <input type="number" id="totalActualizaV" class="form-control" style="height: 50px;" placeholder="Total Habitaciones">
+                                            </div>
+                                            <br>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="col-md-6">
+                                                    <label>Propietaro</label>
+                                                <input type="text" id="dniViActualiza"  class="form-control" style="height: 50px;" placeholder="DNI Propietaro">
+                                            </div>
+                                            <br>
+                                            <div class="col-md-6">
+                                                <label>Region</label>
+                                                <input type="text" id="codigoRgiActualizaV" disabled class="form-control" style="height: 50px;" placeholder="Codigo Reg">
+                                            </div>
+                                            <br>
+                                        </div>
+                                        <br>
+                                        <div class="col-md-12">
+                                            <button type="button" class="btn boton-verde btn-lg" onclick="enviarDatosActualizarVivienda()">Actualizar</button>
+                                        </div>
+        
+                                  </div>
+                            <div id="actualizaBarrio" class="col-md-8">
+                                <div class="col-md-12 col-sm-12">
+                                    <input type="number" id="noRegActualizaBarrio" class="form-control" style="height: 50px;" placeholder="Ingresa el Numero Registro">
+                                </div>
+                                <br>
+                                    <div class="col-md-12">
+                                        <button type="button" class="btn boton-verde btn-lg" onclick="consultarBarrio()">Consultar</button>
+                                    </div>
+                                    <br><br>
+                                    <br>
+                                    <div class="col-md-12 col-sm-12">
+                                        <label>Nombre Barrio</label>
+                                        <input type="text"  disabled id="nombreBarrioActualiza" class="form-control" style="height: 50px;" placeholder="Ingresa Nombre">
+                                    </div>
+                                    <br>
+                                    <div class="col-md-12 col-sm-12">
+                                        <div class="col-md-8 col-sm-6">
+                                                <label>Precio Barrio</label>
+                                            <input type="number" id="precioBarrioActualiza" class="form-control" style="height: 50px;" placeholder="Precio">
+                                        </div>
+                                        <br>
+                                        <div class="col-md-8 col-sm-6">
+                                                <label>Area Barrio</label>
+                                            <input type="number" disabled id="areaBarrioActualiza" class="form-control" style="height: 50px;" placeholder="Area">
+                                        </div>
+                                        <br>
+                                        <div class="col-md-8 col-sm-6">
+                                                <label>Perimetro Barrio</label>
+                                            <input type="number" disabled id="perimetroBarrioActualiza" class="form-control" style="height: 50px;" placeholder="Perimetro">
+                                        </div>
+                                        <br>
+                                        <div class="col-md-8 col-sm-6">
+                                                <label>Coordenadas Barrio</label>
+                                            <input type="text" disabled id="coordenadasBarrioActualiza" class="form-control" style="height: 50px;" placeholder="Coordenadas">
+                                        </div>
+                                        <br>
+                                        <div class="col-md-8 col-sm-6">
+                                                <label>Codigo Reg Municipio</label>
+                                            <input type="text" disabled id="codRegBarrioActualiza" class="form-control" style="height: 50px;" placeholder="Codigo de Region Municipio">
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="col-md-12">
+                                        <button type="button" class="btn boton-verde btn-lg" onclick="enviarDatosActualizarBarrio()">Actualizar</button>
+                                    </div>
+    
+                                </div>
+                            <div id="actualizaPropietario" class="col-md-8">
+                                    <div class="col-md-12 col-sm-12">
+                                        <input type="number" id="dniPropActualiza" class="form-control" style="height: 50px;" placeholder="Ingresa el DNI del Propietario">
+                                    </div>
+                                    <br>
+                                        <div class="col-md-12">
+                                            <button type="button" class="btn boton-verde btn-lg" onclick="consultarPropietario()">Consultar</button>
+                                        </div>
+                                        <br><br>
+                                        <br>
+                                        <div class="col-md-12 col-sm-12">
+                                            <input type="text" disabled id="nombrePropietarioActualiza" class="form-control" style="height: 50px;" placeholder="Nombre Propietario">
+                                        </div>
+                                        <br>
+                                        <div class="col-md-12 col-sm-12">
+                                            <div class="col-md-8 col-sm-6">
+                                                <input type="text" disabled id="apellidoPPropietarioActualiza" class="form-control" style="height: 50px;" placeholder="Apellido Paterno">
+                                            </div>
+                                            <br>
+                                            <div class="col-md-8 col-sm-6">
+                                                <input type="text" disabled id="apellidoMPropietarioActualiza" class="form-control" style="height: 50px;" placeholder="Apellido Materno">
+                                            </div>
+                                            <br>
+                                            <div class="col-md-8 col-sm-6">
+                                                <input type="text" id="direccionPropietarioActualiza" class="form-control" style="height: 50px;" placeholder="Dirección">
+                                            </div>
+                                            <br>
+                                            <div class="col-md-8 col-sm-6">
+                                                <input type="text" id="cuentaPropietarioActualiza" class="form-control" style="height: 50px;" placeholder="Cuenta Bancaria">
+                                            </div>
+                                            <br>
+                                        <div class="col-md-12">
+                                            <button type="button" class="btn boton-verde btn-lg" onclick="enviarDatosPropietarioActualizar()">Actualizar</button>
+                                        </div>
+        
+                                    </div>
+                        </div>
+                        </div>
+                        <div id="consulta" class="tab-pane fade">
+                            <div id="consultaViviendas" class="col-md-12">
+                                <br>
+                                <div class="col-md-12 col-sm-12">
+                                    <input type="number" id="noRegConsultaViviendas" class="form-control" style="height: 50px;" placeholder="Ingresa el Numero Registro">
+                                </div>
+                                <br>
+                                <div class="col-md-12">
+                                    <button type="button" class="btn boton-verde btn-lg" onclick="enviarDatosConsultaVivienda()">Consultar</button>
+                                </div>
+                                <br>
+                                <div class="col-md-12">
+                                    <div class="table-responsive" id="myTable">
+                                        <table class="table" id="myTable">
+                                            <table class="table table-bordered"  id="lista_general">
+                                            </table>
+                                        </table>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div id="consultaPropietarios" class="col-md-12">
+                                    <br>
+                                    <div class="col-md-12 col-sm-12">
+                                        <input type="number" id="dniPropietario" class="form-control" style="height: 50px;" placeholder="Ingresa el DNI del propietario">
+                                    </div>
+                                    <br>
+                                    <div class="col-md-12">
+                                        <button type="button" class="btn boton-verde btn-lg" onclick="enviarDatosConsultarPropietario()">Consultar</button>
+                                    </div>
+                                    <br>
+                                    <div class="col-md-12">
+                                        <div class="table-responsive" id="myTable5">
+                                            <table class="table" id="myTable5">
+                                                <table class="table table-bordered"  id="lista_general">
+                                                </table>
+                                            </table>
+                                        </div>
+                                    </div>
+    
+                                </div>
+                            <div id="consultaMunicipios" class="col-md-12">
+                                <br>    
+                                <div class="col-md-12 col-sm-12">
+                                        <input type="number" id="noRegConsultaMunicipio" class="form-control" style="height: 50px;" placeholder="Ingresa el Codigo de Region">
+                                    </div>
+                                    <br>
+                                    <div class="col-md-12">
+                                        <button type="button" class="btn boton-verde btn-lg" onclick="enviarDatosConsultaMunicipio()">Consultar</button>
+                                    </div>
+                                    <br>
+                                    <div class="col-md-12">
+                                        <div class="table-responsive" id="myTable2">
+                                            <table class="table" id="myTable2">
+                                                <table class="table table-bordered"  id="lista_general">
+                                                </table>
+                                            </table>
+                                        </div>
+                                    </div>
+    
+                                </div>
+                            <div id="consultaRecibos" class="col-md-12">
+                                    <br>    
+                                    <div class="col-md-12 col-sm-12">
+                                            <input type="text" id="folioReciboConsulta" class="form-control" style="height: 50px;" placeholder="Ingresa el Folio del Recibo">
+                                        </div>
+                                        <br>
+                                        <div class="col-md-12">
+                                            <button type="button" class="btn boton-verde btn-lg" onclick="enviarDatosConsultaRecibo()">Consultar</button>
+                                        </div>
+                                        <br>
+                                        <div class="col-md-12">
+                                            <div class="table-responsive" id="myTable4">
+                                                <table class="table" id="myTable4">
+                                                    <table class="table table-bordered"  id="lista_general">
+                                                    </table>
+                                                </table>
+                                            </div>
+                                        </div>
+        
+                            </div>
+                            <div id="consultaHabitantes" class="col-md-12">
+                                    <br>    
+                                    <div class="col-md-12 col-sm-12">
+                                            <input type="number" id="noRegHabConsulta" class="form-control" style="height: 50px;" placeholder="Ingresa el Codigo de Habitante">
+                                        </div>
+                                        <br>
+                                        <div class="col-md-12">
+                                            <button type="button" class="btn boton-verde btn-lg" onclick="enviarDatosConsultarHabitante()">Consultar</button>
+                                        </div>
+                                        <br>
+                                        <div class="col-md-12">
+                                            <div class="table-responsive" id="myTable6">
+                                                <table class="table" id="myTable6">
+                                                    <table class="table table-bordered"  id="lista_general">
+                                                    </table>
+                                                </table>
+                                            </div>
+                                        </div>
+        
+                                    </div>
+                        <div id="consultaBarrios" class="col-md-12">
+                                <br>    
+                                <div class="col-md-12 col-sm-12">
+                                        <input type="number" id="noRegConsultaBarrio" class="form-control" style="height: 50px;" placeholder="Ingresa el Codigo de Region del Barrio">
+                                    </div>
+                                    <br>
+                                    <div class="col-md-12">
+                                        <button type="button" class="btn boton-verde btn-lg" onclick="enviarDatosConsultaBarrio()">Consultar</button>
+                                    </div>
+                                    <br>
+                                    <div class="col-md-12">
+                                        <div class="table-responsive" id="myTable3">
+                                            <table class="table" id="myTable3">
+                                                <table class="table table-bordered"  id="lista_general">
+                                                </table>
+                                            </table>
+                                        </div>
+                                    </div>
+    
+                                </div>
+                        </div>
+                        <div id="baja" class="tab-pane fade">
+                                <div id="bajaHabitantes" class="col-md-12">
+                                        <br>
+                                        <div class="col-md-12 col-sm-12">
+                                            <input type="number" id="dniHabitantes" class="form-control" style="height: 50px;" placeholder="Ingresa el DNI del propietario">
+                                        </div>
+                                        <br>
+                                        <div class="col-md-12">
+                                            <button type="button" class="btn boton-verde btn-lg" onclick="darDeBaja()">Consultar</button>
+                                        </div>
+                                        <br>
+                                        <div class="col-md-12">
+                                            <div class="table-responsive" id="myTable5">
+                                                <table class="table" id="myTable5">
+                                                    <table class="table table-bordered"  id="lista_general">
+                                                    </table>
+                                                </table>
+                                            </div>
+                                        </div>
+        
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+
+    </body>
+</html>
